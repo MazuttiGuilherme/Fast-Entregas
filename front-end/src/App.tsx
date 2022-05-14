@@ -1,6 +1,8 @@
+import { Routes } from "./routes";
+
 function App() {
   return (
-    <p>Fast Entregas</p>
+    <Routes />
   );
 }
 
