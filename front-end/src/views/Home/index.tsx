@@ -1,15 +1,16 @@
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import styled from "styled-components";
 import bgMobile from "../../assets/img/bg-fox-entregas-mobile.jpg";
 import bgDesktop from "../../assets/img/bg-fox-entregas.jpg";
+import { CustomButton } from "../../components/CustomButton";
 
 export function HomeView () {
     return (
       <Banner className="vh-100">
           <Container className="h-100 d-flex flex-column justify-content-center align-items-center align-items-lg-start">
               <Title className="text-white text-center mt-auto mt-lg-0">Fazemos entregas rápidas, seguras e econômicas</Title>
-              <Button variant='success' size='lg' className="mt-auto mt-lg-3 mb-2">Criar conta</Button>
-              <Button variant='success' size='lg' className="mb-4">Fazer Login</Button>
+              <CustomButton variant='success' size='lg' className="mt-auto mt-lg-3 mb-2">Criar conta</CustomButton>
+              <CustomButton variant='success' size='lg' className="mb-4">Fazer Login</CustomButton>
           </Container>
       </Banner>
     )
