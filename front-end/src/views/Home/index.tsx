@@ -3,31 +3,35 @@ import styled from "styled-components";
 import bgMobile from "../../assets/img/bg-fox-entregas-mobile.jpg";
 import bgDesktop from "../../assets/img/bg-fox-entregas.jpg";
 import { CustomButton } from "../../components/CustomButton";
-import { Footer } from "../../components/Layout/Footer";
-import { Header } from "../../components/Layout/Header";
+import { Layout } from "../../components/Layout";
 
 export function HomeView() {
   return (
-    <Banner className="vh-100">
-      <Header />
-      <Container className="h-100 d-flex flex-column justify-content-center align-items-center align-items-lg-start">
-        <Title className="text-white text-center mt-auto mt-lg-0">
-          Fazemos entregas rápidas, seguras e econômicas
-        </Title>
-        <CustomButton
-          variant="success"
-          size="lg"
-          className="mt-auto mt-lg-3 mb-2"
-          to="/cadastro"
-        >
-          Criar conta
-        </CustomButton>
-        <CustomButton variant="success" size="lg" className="mb-4" to="/login">
-          Fazer login
-        </CustomButton>
-      </Container>
-      <Footer/>
-    </Banner>
+    <Layout startTransparent>
+      <Banner className="vh-100">
+        <Container className="h-100 d-flex flex-column justify-content-center align-items-center align-items-lg-start">
+          <Title className="text-white text-center mt-auto mt-lg-0">
+            Fazemos entregas rápidas, seguras e econômicas
+          </Title>
+          <CustomButton
+            variant="success"
+            size="lg"
+            className="mt-auto mt-lg-3 mb-2"
+            to="/cadastro"
+          >
+            Criar conta
+          </CustomButton>
+          <CustomButton
+            variant="success"
+            size="lg"
+            className="mb-4"
+            to="/login"
+          >
+            Fazer login
+          </CustomButton>
+        </Container>
+      </Banner>
+    </Layout>
   );
 }
 
