@@ -3,6 +3,7 @@ import styled from "styled-components";
 import bgMobile from "../../assets/img/bg-fox-entregas-mobile.jpg";
 import bgDesktop from "../../assets/img/bg-fox-entregas.jpg";
 import { CustomButton } from "../../components/CustomButton";
+import { Footer } from "../../components/Layout/Footer";
 import { Header } from "../../components/Layout/Header";
 
 export function HomeView() {
@@ -25,6 +26,7 @@ export function HomeView() {
           Fazer login
         </CustomButton>
       </Container>
+      <Footer/>
     </Banner>
   );
 }
