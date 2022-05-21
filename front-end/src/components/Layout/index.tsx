@@ -4,17 +4,18 @@ import {Header} from "./Header";
 
 type Props = {
   children: React.ReactNode;
-  startTransparent?: boolean
+  startTransparent?: boolean;
+  withoutMargin?: boolean
 };
 
-export const Layout: React.FC<Props> = ({ children, startTransparent }) => {
+export const Layout: React.FC<Props> = ({ children, startTransparent, withoutMargin }) => {
   return (
     <>
       <Header startTransparent={startTransparent} />
       <MainStyled startTransparent={startTransparent}>
         {children}
       </MainStyled>
-      <Footer />
+      <Footer withoutMargin={withoutMargin} />
     </>
   );
 };

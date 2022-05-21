@@ -5,9 +5,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LogoWhite from "../../assets/img/logo-fox-entregas-white.svg";
 
-export function Footer() {
+type Props = {
+    withoutMargin?: boolean
+
+}
+export function Footer({ withoutMargin = false }: Props) {
     return (
-        <FooterStyled className="text-center">
+    <FooterStyled className= {`text-center ${withoutMargin ? '' : 'mt-5'}`}>
             <Container className="d-lg-flex align-items-center">
                 <Link to='/' className='me-lg-auto'>
                 <ImageStyled src={LogoWhite} alt='Fox Entregas' width={255} height={67}/>
