@@ -1,7 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/img/logo-fox-entregas.svg';
-import LogoWhite from '../../assets/img/logo-fox-entregas-white.svg'
+import Logo from '../../assets/img/logo-fast-entregas.jpeg';
+import LogoWhite from '../../assets/img/logo-fast-entregas-white.png'
 import { CustomButton } from "../CustomButton";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,7 +30,7 @@ export function Header ({ startTransparent = false }: Props) {
     <NavbarStyled fixed='top' expand="lg" bg={isTransparent ? undefined : 'white'}>
       <Container>
         <Navbar.Brand to='/' as={Link}>
-            <ImageStyled src={isTransparent ? LogoWhite : Logo} alt="Fox Entregas" width={194} height={51} />
+            <ImageStyled src={isTransparent ? LogoWhite : Logo} alt="Fox Entregas" width={266} height={160} />
         </Navbar.Brand>
         <NavbarToggleStyled aria-controls="basic-navbar-nav">
             <FontAwesomeIcon icon={faBars} className={isTransparent ? 'text-white' : 'text-dark'} size='lg' />
@@ -58,6 +58,7 @@ const ImageStyled = styled.img`
   @media (min-width: 992px) {
     width: 266px;
     height: auto;
+    margin-top: 0;
   }
 `
 

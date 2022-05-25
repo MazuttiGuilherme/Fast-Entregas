@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import styled from "styled-components";
-import bgMobile from "../../assets/img/bg-fox-entregas-mobile.jpg";
-import bgDesktop from "../../assets/img/bg-fox-entregas.jpg";
+import bgMobile from "../../assets/img/bg-fast-entregas-mobile.jpg";
+import bgDesktop from "../../assets/img/bg-fast-entregas.jpg";
 import { CustomButton } from "../../components/CustomButton";
 import { Layout } from "../../components/Layout";
 

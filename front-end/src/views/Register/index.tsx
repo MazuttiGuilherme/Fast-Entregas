@@ -8,7 +8,27 @@ export function RegisterView() {
     <Layout>
       <Container>
         <PageTitle>Nova Conta</PageTitle>
-        <FormField controlId='userName' label='Nome' placeholder="Digite o seu nome" error='Preencha o seu nome.' isInvalid />
+        <FormField
+          controlId="input-name"
+          label="Nome"
+          placeholder="Preencha o seu nome"
+          isInvalid
+        />
+        <FormField
+          controlId="input-email"
+          type="email"
+          label="E-mail"
+          placeholder="Ele será o usuário"
+        />
+        <FormField
+          controlId="input-phone"
+          type="phone"
+          label="Telefone"
+          placeholder="Digite o seu telefone"
+          mask={[
+            { mask: '(00) 0000-00000' }
+        ]}
+        />
       </Container>
     </Layout>
   );

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import LogoWhite from "../../assets/img/logo-fox-entregas-white.svg";
+import LogoWhite from "../../assets/img/logo-fast-entregas-white.png";
 
 type Props = {
     withoutMargin?: boolean
