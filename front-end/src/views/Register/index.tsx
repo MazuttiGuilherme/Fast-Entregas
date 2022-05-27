@@ -5,72 +5,95 @@ import { CustomButton } from "../../components/CustomButton";
 import { FormField } from "../../components/FormField";
 import { Layout } from "../../components/Layout";
 import { PageTitle } from "../../components/PageTitle";
+import * as yup from "yup";
 
 type FormValues = {
-    name: string
-    email: string
-    phone: string
-    password: string
-    agree: boolean
-}
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  agree: boolean;
+};
 
-export function RegisterView () {
+export function RegisterView() {
   const formik = useFormik<FormValues>({
     initialValues: {
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    agree: false
+      name: "",
+      email: "",
+      phone: "",
+      password: "",
+      agree: false,
     },
-    onSubmit: () => {
-      console.log('oi')
-    }
-  })
+    validationSchema: yup.object().shape({
+      name: yup
+        .string()
+        .required("Preencha o nome")
+        .min(5, "Informe ao menos 5 caractéres"),
+      email: yup
+        .string()
+        .required("Preencha o e-mail.")
+        .email("Informe um e-mail válido."),
+      phone: yup.string().required("Preencha o telefone."),
+      password: yup
+        .string()
+        .required("Preencha a senha")
+        .min(8, "Informe ao menos 8 caractéres.")
+        .max(50, "Informe no máximo 50 caractéres."),
+      agree: yup.boolean().equals([true], "É preciso aceitar os termos"),
+    }),
+    onSubmit: (values) => {
+      console.log("oi", values);
+      if (!values.name) {
+        formik.setFieldError("name", "Preencha o nome.");
+      }
+      if (!values.email) {
+        formik.setFieldError("email", "Preencha o email.");
+      }
+    },
+  });
   const getFieldProps = (fieldName: keyof FormValues) => {
     return {
       ...formik.getFieldProps(fieldName),
-      controlId: `input-${fieldName}`
-    }
-  }
+      controlId: `input-${fieldName}`,
+      error: formik.errors[fieldName],
+      isInvalid: formik.touched[fieldName] && !!formik.errors[fieldName],
+      isValid: formik.touched[fieldName] && !formik.errors[fieldName],
+    };
+  };
   return (
     <Layout>
       <Container className="mt-5">
-        <Row className='justify-content-center'>
+        <Row className="justify-content-center">
           <Col lg={4} className="mt-5">
             <PageTitle>Nova Conta</PageTitle>
             <Form onSubmit={formik.handleSubmit}>
               <FormField
                 label="Nome"
                 placeholder="Digite seu nome."
-                {...getFieldProps('name')}
+                {...getFieldProps("name")}
               />
               <FormField
                 type="email"
                 label="E-mail"
                 placeholder="Digite seu melhor e-mail."
-                {...getFieldProps('email')}
+                {...getFieldProps("email")}
               />
               <FormField
                 label="Telefone"
                 placeholder="(00) 00000-0000"
-                {...getFieldProps('phone')}
-                mask={[
-                  { mask: "(00) 0000-0000" },
-                  { mask: "(00) 00000-0000" },
-              ]}
-              onAccept={value => formik.setFieldValue
-              ('phone', value)}
+                {...getFieldProps("phone")}
+                mask={[{ mask: "(00) 0000-0000" }, { mask: "(00) 00000-0000" }]}
+                onAccept={(value) => formik.setFieldValue("phone", value)}
               />
               <FormField
                 label="Senha"
                 placeholder="Informe sua senha de acesso."
-                {...getFieldProps('password')}
+                {...getFieldProps("password")}
                 type="password"
               />
               <Form.Group className="mb-3" controlId="input-agree">
                 <Form.Check
-                {...getFieldProps('agree')}
+                  {...getFieldProps("agree")}
                   type="checkbox"
                   label={
                     <>
@@ -81,9 +104,14 @@ export function RegisterView () {
                     </>
                   }
                 />
+                {formik.touched.agree && formik.errors.agree && (
+                  <Form.Control.Feedback type="invalid" className='d-block'>
+                    {formik.errors.agree}
+                  </Form.Control.Feedback>
+                )}
               </Form.Group>
               <div className="d-grid mb-4">
-                <CustomButton type='submit'>Criar conta</CustomButton>
+                <CustomButton type="submit">Criar conta</CustomButton>
               </div>
               <p className="text-center">
                 Já possui conta?
