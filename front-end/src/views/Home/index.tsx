@@ -10,7 +10,7 @@ export function HomeView() {
     <Layout startTransparent withoutMargin>
       <Banner className="vh-100">
         <Container className="h-100 d-flex flex-column justify-content-center align-items-center align-items-lg-start">
-          <Title className="text-white text-center mt-auto mt-lg-0">
+          <Title className="text-white text-center mt-auto mt-lg-5">
             Fazemos entregas rápidas, seguras e econômicas
           </Title>
           <CustomButton
@@ -24,7 +24,7 @@ export function HomeView() {
           <CustomButton
             variant="success"
             size="lg"
-            className="mb-4"
+            className="mb-5"
             to="/login"
           >
             Fazer login

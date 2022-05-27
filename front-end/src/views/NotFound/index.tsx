@@ -5,10 +5,10 @@ import { PageTitle } from "../../components/PageTitle";
 export function NotFoundView() {
   return (
     <Layout>
-      <Container className="text-center">
+      <Container className="text-center mt-5">
         <PageTitle>Página não encontrada</PageTitle>
         <p>
-          A página que você está tentando acessar naõ foi encontrada ou foi
+          A página que você está tentando acessar não foi encontrada ou foi
           movida.
         </p>
         <p>Utilize o menu superior para encontrar o que deseja.</p>

@@ -20,7 +20,7 @@ export const Layout: React.FC<Props> = ({ children, startTransparent, withoutMar
   );
 };
 
-//Cria tipo a partir de otro selecionando propriedades
+//Cria tipo a partir de outro selecionando propriedades
 //typeMainProps - Pick <Props, 'startTransparent'>
 
 const MainStyled = styled.main<Props>`
