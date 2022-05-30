@@ -32,7 +32,6 @@ export function FormField({
       ) : (
         <Form.Control {...inputProps} />
       )}
-      <Form.Control {...inputProps} />
       <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
     </Form.Group>
   );

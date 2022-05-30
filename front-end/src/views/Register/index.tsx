@@ -6,6 +6,12 @@ import { FormField } from "../../components/FormField";
 import { Layout } from "../../components/Layout";
 import { PageTitle } from "../../components/PageTitle";
 import * as yup from "yup";
+import { createUser } from "../../services/createUser";
+import { toast } from "react-toastify";
+import { AuthErrorCodes } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../store/slices/userSlice";
 
 type FormValues = {
   name: string;
@@ -16,6 +22,7 @@ type FormValues = {
 };
 
 export function RegisterView() {
+  const dispatch = useDispatch()
   const formik = useFormik<FormValues>({
     initialValues: {
       name: "",
@@ -39,15 +46,21 @@ export function RegisterView() {
         .required("Preencha a senha")
         .min(8, "Informe ao menos 8 caractéres.")
         .max(50, "Informe no máximo 50 caractéres."),
-      agree: yup.boolean().equals([true], "É preciso aceitar os termos"),
+      agree: yup.boolean()
+      .equals([true], "É preciso aceitar os termos"),
     }),
-    onSubmit: (values) => {
-      console.log("oi", values);
-      if (!values.name) {
-        formik.setFieldError("name", "Preencha o nome.");
+    onSubmit: async (values, { setFieldError }) => {
+      try {
+        const user = await createUser(values)
+        const action = updateUser(user)
+        dispatch(action)
+      } catch(error) {
+      if (error instanceof FirebaseError && error.code === AuthErrorCodes.EMAIL_EXISTS) {
+        setFieldError('e-mail', 'Este e-mail já está em uso.')
+        return
       }
-      if (!values.email) {
-        formik.setFieldError("email", "Preencha o email.");
+     console.log(error)
+     toast.error('Ocorreu um erro ao cadastrar. Tente novamente.')
       }
     },
   });
@@ -64,7 +77,7 @@ export function RegisterView() {
     <Layout>
       <Container className="mt-5">
         <Row className="justify-content-center">
-          <Col lg={4} className="mt-5">
+          <Col lg={4}>
             <PageTitle>Nova Conta</PageTitle>
             <Form onSubmit={formik.handleSubmit}>
               <FormField
