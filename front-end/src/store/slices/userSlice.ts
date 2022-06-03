@@ -16,10 +16,12 @@ const slice = createSlice({
     initialState,
     reducers: {
         updateUser: (state, action: PayloadAction<User>) => {
-
+            state.loadingUser = false
+            state.user = action.payload
         },
-        deleteUser: () => {
-
+        deleteUser: (state) => {
+            state.loadingUser = false
+            state.user = null
         }
     }
 })

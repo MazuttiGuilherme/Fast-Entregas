@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CustomButton } from "../../components/CustomButton";
 import { FormField } from "../../components/FormField";
 import { Layout } from "../../components/Layout";
@@ -23,6 +23,7 @@ type FormValues = {
 
 export function RegisterView() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const formik = useFormik<FormValues>({
     initialValues: {
       name: "",
@@ -53,6 +54,7 @@ export function RegisterView() {
       try {
         const user = await createUser(values)
         dispatch(updateUser(user))
+        navigate('/novo-pedido')
       } catch(error) {
       if (error instanceof FirebaseError && error.code === AuthErrorCodes.EMAIL_EXISTS) {
         setFieldError('e-mail', 'Este e-mail já está em uso.')
