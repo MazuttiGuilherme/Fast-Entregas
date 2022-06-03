@@ -52,8 +52,7 @@ export function RegisterView() {
     onSubmit: async (values, { setFieldError }) => {
       try {
         const user = await createUser(values)
-        const action = updateUser(user)
-        dispatch(action)
+        dispatch(updateUser(user))
       } catch(error) {
       if (error instanceof FirebaseError && error.code === AuthErrorCodes.EMAIL_EXISTS) {
         setFieldError('e-mail', 'Este e-mail já está em uso.')
@@ -124,7 +123,13 @@ export function RegisterView() {
                 )}
               </Form.Group>
               <div className="d-grid mb-4">
-                <CustomButton type="submit">Criar conta</CustomButton>
+                <CustomButton 
+                type="submit" 
+                loading={formik.isValidating || formik.isSubmitting}
+                disabled={formik.isValidating || formik.isSubmitting}
+                >
+                  Criar conta
+                </CustomButton>
               </div>
               <p className="text-center">
                 Já possui conta?
