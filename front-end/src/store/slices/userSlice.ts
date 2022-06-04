@@ -32,3 +32,4 @@ export const { updateUser, deleteUser } = slice.actions
 export default slice.reducer
 
 export const selectIsUserLoggedIn = (state: RootState) => !!state.userData.user
+export const selectIsLoadingUser = (state: RootState) => state.userData.loadingUser
