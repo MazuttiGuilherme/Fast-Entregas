@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { Form } from "react-bootstrap";
+import { AutoCompleteField } from "../../components/AutoCompleteField";
 import { CustomButton } from "../../components/CustomButton";
 import { FormField } from "../../components/FormField";
 
@@ -31,7 +32,7 @@ export function EstimateForm() {
       };
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <FormField
+    <AutoCompleteField
       {...getFieldProps('pickupAddress')}
       label="Endereço de retirada (A)" 
       placeholder="Informe o endereço completo." 

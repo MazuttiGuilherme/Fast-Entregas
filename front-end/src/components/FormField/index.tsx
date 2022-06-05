@@ -2,7 +2,7 @@ import { InputHTMLAttributes } from "react";
 import { Form, FormControlProps } from "react-bootstrap";
 import { IMaskInput } from "react-imask";
 
-type Props = {
+export type Props = {
   controlId: string;
   label: string;
   error?: string;
