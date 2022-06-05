@@ -8,14 +8,13 @@ import { deleteUser, updateUser } from "./store/slices/userSlice";
 
 function App() {
   const dispatch = useDispatch()
-  useEffect(() => {
+    useEffect(() => {
     onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         const user = await getUser(currentUser.uid)
         dispatch(updateUser(user))
       }else{
         dispatch (deleteUser())
-
       }
     })
   }, [dispatch])
