@@ -2,7 +2,7 @@ import { InputHTMLAttributes } from "react";
 import { Form, FormControlProps } from "react-bootstrap";
 import { IMaskInput } from "react-imask";
 
-export type Props = {
+export type FormFieldProps = {
   controlId: string;
   label: string;
   error?: string;
@@ -17,7 +17,7 @@ export function FormField({
   mask,
   onAccept,
   ...inputProps
-}: Props) {
+}: FormFieldProps) {
   return (
     <Form.Group className="mb-3" controlId={controlId}>
       {label && <Form.Label className="mb-1">{label}</Form.Label>}

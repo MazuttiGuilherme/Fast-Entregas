@@ -3,18 +3,19 @@ import { Form } from "react-bootstrap";
 import { AutoCompleteField } from "../../components/AutoCompleteField";
 import { CustomButton } from "../../components/CustomButton";
 import { FormField } from "../../components/FormField";
+import { Address } from "../../entities/Address";
 
 type FormValues = {
-    pickupAddress: string
-    deliveryAddress: string
+    pickupAddress: Address | null
+    deliveryAddress: Address | null
     comments: string
 }
 
 export function EstimateForm() {
     const formik = useFormik<FormValues>({
         initialValues: {
-            pickupAddress: '',
-            deliveryAddress: '',
+            pickupAddress: null,
+            deliveryAddress: null,
             comments: ''
         },
         onSubmit: async (values) => {
@@ -35,12 +36,14 @@ export function EstimateForm() {
     <AutoCompleteField
       {...getFieldProps('pickupAddress')}
       label="Endereço de retirada (A)" 
-      placeholder="Informe o endereço completo." 
+      placeholder="Informe o endereço completo."
+      onChange={(address) => formik.setFieldValue('pickupAddress', address)}
     />
-      <FormField
+      <AutoCompleteField
       {...getFieldProps('deliveryAddress')}
       label="Endereço de entrega (B)" 
       placeholder="Informe o endereço completo." 
+      onChange={(address) => formik.setFieldValue('deliveryAddress', address)}
     />
       <FormField
       {...getFieldProps('comments')}
