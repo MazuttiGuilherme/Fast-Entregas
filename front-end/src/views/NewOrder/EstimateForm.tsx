@@ -4,6 +4,7 @@ import { AutoCompleteField } from "../../components/AutoCompleteField";
 import { CustomButton } from "../../components/CustomButton";
 import { FormField } from "../../components/FormField";
 import { Address } from "../../entities/Address";
+import * as yup from 'yup';
 
 type FormValues = {
     pickupAddress: Address | null
@@ -18,6 +19,14 @@ export function EstimateForm() {
             deliveryAddress: null,
             comments: ''
         },
+        validationSchema: yup.object().shape({
+          pickupAddress: yup.object()
+          .typeError('Selecione um endereço na lista.'),
+          deliveryAddress: yup.object()
+          .typeError('Selecione um endereço na lista.'),
+          comments: yup.string()
+          .required('Informe as instruções')
+        }),
         onSubmit: async (values) => {
             console.log(values)
         }
