@@ -6,6 +6,8 @@ import { FormField } from "../../components/FormField";
 import { Address } from "../../entities/Address";
 import * as yup from 'yup';
 import { createEstimate, NewEstimateInput } from "../../services/createEstimate";
+import { useDispatch } from "react-redux";
+import { setCurrentEstimate } from "../../store/slices/estimateSlice";
 
 type FormValues = {
     pickupAddress: Address | null
@@ -14,6 +16,7 @@ type FormValues = {
 }
 
 export function EstimateForm() {
+  const dispatch = useDispatch()
     const formik = useFormik<FormValues>({
         initialValues: {
             pickupAddress: null,
@@ -30,7 +33,7 @@ export function EstimateForm() {
         }),
         onSubmit: async (values) => {
            const estimate = await createEstimate(values as NewEstimateInput)
-           console.log(estimate)
+           dispatch(setCurrentEstimate(estimate))
         }
     })
     const getFieldProps = (fieldName: keyof FormValues) => {
