@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Estimate } from "../../entities/Estimate"
+import { RootState } from '../store';
 
 type EstimateState = {
     currentEstimate: Estimate | null
@@ -23,3 +24,5 @@ const slice = createSlice({
 export const { setCurrentEstimate, clearCurrentEstimate } = slice.actions
 
 export default slice.reducer
+
+export const selectCurrentEstimate = (state: RootState) => state.estimateData.currentEstimate

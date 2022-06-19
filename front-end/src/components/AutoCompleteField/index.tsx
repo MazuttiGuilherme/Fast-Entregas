@@ -41,6 +41,7 @@ export function AutoCompleteField ({ value, onChange, ...fieldProps}: Props) {
                 <FormField 
                  {...fieldProps}
                  onChange={() => onChange(null)}
+                 defaultValue={value?.address || ''}
                  />
             </Autocomplete>
         </LoadGoogleScript>
