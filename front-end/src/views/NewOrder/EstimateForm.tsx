@@ -5,6 +5,7 @@ import { CustomButton } from "../../components/CustomButton";
 import { FormField } from "../../components/FormField";
 import { Address } from "../../entities/Address";
 import * as yup from 'yup';
+import { createEstimate, NewEstimateInput } from "../../services/createEstimate";
 
 type FormValues = {
     pickupAddress: Address | null
@@ -28,7 +29,8 @@ export function EstimateForm() {
           .required('Informe as instruções')
         }),
         onSubmit: async (values) => {
-            console.log(values)
+           const estimate = await createEstimate(values as NewEstimateInput)
+           console.log(estimate)
         }
     })
     const getFieldProps = (fieldName: keyof FormValues) => {
