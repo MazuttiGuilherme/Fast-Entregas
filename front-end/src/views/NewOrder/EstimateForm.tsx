@@ -93,7 +93,7 @@ export function EstimateForm() {
         )}
       </Form>
       {currentEstimate && (
-      <CustomButton variant='outline-primary' type='button' onClick={handleChangeAddress}>Alterar endereços</CustomButton>
+      <CustomButton variant='outline-primary' type='button' onClick={handleChangeAddress} className='mb-3 mb-md-0'>Alterar endereços</CustomButton>
       )}
     </>
   );

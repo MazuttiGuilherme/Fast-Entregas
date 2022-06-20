@@ -13,7 +13,7 @@ export function NewOrderView () {
                     <Col xs={12} md={6} lg={7}>
                         <EstimateForm />
                     </Col>
-                    <Col xs={12} md={6} lg={5}>
+                    <Col xs={12} md={6} lg={5} className='p-0 px-md-3'>
                         <EstimateDetails />
                     </Col>
                 </Row>
