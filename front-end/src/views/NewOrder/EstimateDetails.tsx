@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import styled from "styled-components"
 import { selectHasCurrentEstimate } from "../../store/slices/estimateSlice"
+import { EstimateFinish } from "./EstimateFinish"
 import { EstimateMap } from "./EstimateMap"
 import { EstimateNumbers } from "./EstimateNumbers"
 
@@ -17,6 +18,7 @@ export function EstimateDetails () {
         <WithEstimateStyled>
           <EstimateMap />
           <EstimateNumbers />
+          <EstimateFinish />
         </WithEstimateStyled>
     )
 }
