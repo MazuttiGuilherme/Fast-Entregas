@@ -1,22 +1,22 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {
-  ImageBackground,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import {ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
 import bg from '../../assets/img/bg-fast-entregas-mobile.jpg';
 import Logo from '../../assets/img/logo-fast-entregas-white.svg';
-import { CustomText } from '../../components/CustomText';
+import {CustomButton} from '../../components/CustomButton';
+import {CustomText} from '../../components/CustomText';
 
 export function HomeView() {
   return (
     <ImageBackground source={bg} style={styles.background}>
       <SafeAreaView style={styles.view}>
-        <Logo width={266} height={70}/>
-        <CustomText bold style={styles.title}>Faça login e escolha os pedidos que quer entregar.</CustomText>
-        <Text>Fazer login</Text>
+        <Logo width={266} height={70} />
+        <CustomText bold style={styles.title}>
+          Faça login e escolha os pedidos que quer entregar.
+        </CustomText>
+        <CustomButton variant="success" size="md" block loading>
+          Fazer login
+        </CustomButton>
       </SafeAreaView>
     </ImageBackground>
   );
