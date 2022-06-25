@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Routes } from './routes';
 
 export default function App() {
   return (
-    <View>
-      <Text>Fast Entregas</Text>;
-    </View>
+    <NavigationContainer>
+      <Routes />
+    </NavigationContainer>
   );
 }

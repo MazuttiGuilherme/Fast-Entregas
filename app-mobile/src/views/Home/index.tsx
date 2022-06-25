@@ -1,12 +1,19 @@
 /* eslint-disable prettier/prettier */
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import {ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
 import bg from '../../assets/img/bg-fast-entregas-mobile.jpg';
 import Logo from '../../assets/img/logo-fast-entregas-white.svg';
 import {CustomButton} from '../../components/CustomButton';
 import {CustomText} from '../../components/CustomText';
+import { RootStackParamList } from '../../routes';
 
-export function HomeView() {
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+export function HomeView({navigation}: Props) {
+  const handlePressLogin = () => {
+    navigation.navigate('Login');
+  };
   return (
     <ImageBackground source={bg} style={styles.background}>
       <SafeAreaView style={styles.view}>
@@ -14,7 +21,7 @@ export function HomeView() {
         <CustomText bold style={styles.title}>
           Faça login e escolha os pedidos que quer entregar.
         </CustomText>
-        <CustomButton variant="success" size="md" block loading>
+        <CustomButton variant="success" size="lg" onPress={handlePressLogin}>
           Fazer login
         </CustomButton>
       </SafeAreaView>
