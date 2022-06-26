@@ -8,13 +8,17 @@ import * as yup from 'yup';
 import {loginUser} from '../../services/loginUser';
 import Toast from 'react-native-toast-message';
 import { isNativeFirebaseAuthError } from '../../utils/isNativeFirebaseAuthError';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../routes';
 
 type FormValues = {
   email: string;
   password: string;
 };
 
-export function LoginView() {
+type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+
+export function LoginView({navigation}: Props) {
   const formik = useFormik<FormValues>({
     initialValues: {
       email: '',
@@ -31,6 +35,7 @@ export function LoginView() {
       try {
         const user = await loginUser(values);
         console.log('sucesso', user);
+        navigation.navigate('Orders');
       } catch (error) {
         const errorMsg =
         isNativeFirebaseAuthError(error) &&                                      (error.code === 'auth/user-not-found' ||
