@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1075225750254",
+    "project_id": "fast-entregas-d5422",
+    "storage_bucket": "fast-entregas-d5422.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075225750254:android:22ffdd44cc1290ad8b61ff",
+        "android_client_info": {
+          "package_name": "com.appmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1075225750254-pn7f6mto0crmugv90muka2cn703honmd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsUex5UTc7CF7mqyDU_7jUhajA2l81X-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1075225750254-pn7f6mto0crmugv90muka2cn703honmd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
