@@ -21,7 +21,7 @@ type FormValues = {
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 export function LoginView({navigation}: Props) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const formik = useFormik<FormValues>({
     initialValues: {
       email: '',
