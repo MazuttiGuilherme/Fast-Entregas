@@ -6,8 +6,8 @@ import {LoginView} from './views/Login';
 import { OrdersView } from './views/Orders';
 import auth from '@react-native-firebase/auth';
 import { getUser } from './services/getUser';
-import { useDispatch } from 'react-redux';
-import { deleteUser, updateUser } from './store/slices/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteUser, selectIsUserLoggedIn, updateUser } from './store/slices/userSlice';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -29,6 +29,7 @@ export function Routes() {
       }
     });
   }, [dispatch]);
+  const isUserLoggedIn = useSelector(selectIsUserLoggedIn);
   return (
     <Stack.Navigator
       screenOptions={{
@@ -40,27 +41,32 @@ export function Routes() {
           fontFamily: 'Lato-Regular',
         },
       }}>
-      <Stack.Screen
-        name="Home"
-        component={HomeView}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Login"
-        component={LoginView}
-        options={{
-          title: 'Entrar no sistema',
-        }}
-      />
-      <Stack.Screen
-        name="Orders"
-        component={OrdersView}
-        options={{
-          title: 'Pedidos',
-        }}
-      />
+        {!isUserLoggedIn ? (
+          <>
+            <Stack.Screen
+              name="Home"
+              component={HomeView}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={LoginView}
+              options={{
+                title: 'Entrar no sistema',
+              }}
+            />
+          </>
+        ) : (
+          <Stack.Screen
+          name="Orders"
+          component={OrdersView}
+          options={{
+            title: 'Pedidos',
+          }}
+        />
+        )}
     </Stack.Navigator>
   );
 }
