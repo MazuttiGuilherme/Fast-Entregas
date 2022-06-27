@@ -1,6 +1,4 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable eol-last */
-/* eslint-disable quotes */
 import {faRectangleList as farRectangleList} from '@fortawesome/free-regular-svg-icons';
 import {faRectangleList as fasRectangleList} from '@fortawesome/free-solid-svg-icons';
 import {faClock as farClock} from '@fortawesome/free-regular-svg-icons';
@@ -9,14 +7,28 @@ import {faCircleCheck as farCircleCheck} from '@fortawesome/free-regular-svg-ico
 import {faCircleCheck as fasCircleCheck} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {AcceptedOrdersView} from '../AcceptedOrders';
 import {FinishedOrdersView} from '../FinishedOrders';
 import {OpenOrdersView} from '../OpenOrders';
+import { getOrders } from '../../services/getOrders';
+import { selectUser } from '../../store/slices/userSlice';
+import { useSelector } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
 export function OrdersView() {
+  const user = useSelector(selectUser);
+  useEffect(() => {
+    const fetchOrders = async () => {
+      if (!user) {
+        return;
+      }
+      const orders = await getOrders(user.id);
+      console.log(orders);
+    };
+    fetchOrders();
+  }, [user]);
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
