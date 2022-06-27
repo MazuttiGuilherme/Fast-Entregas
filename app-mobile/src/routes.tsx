@@ -7,7 +7,9 @@ import { OrdersView } from './views/Orders';
 import auth from '@react-native-firebase/auth';
 import { getUser } from './services/getUser';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, selectIsUserLoggedIn, updateUser } from './store/slices/userSlice';
+import { deleteUser, selectIsLoadingUser, selectIsUserLoggedIn, updateUser } from './store/slices/userSlice';
+import { LogoutButton } from './components/LogoutButton';
+import { Loading } from './components/Loading';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -30,6 +32,10 @@ export function Routes() {
     });
   }, [dispatch]);
   const isUserLoggedIn = useSelector(selectIsUserLoggedIn);
+  const isLoadingUser = useSelector(selectIsLoadingUser);
+  if (isLoadingUser) {
+  return <Loading />;
+  }
   return (
     <Stack.Navigator
       screenOptions={{
@@ -64,6 +70,7 @@ export function Routes() {
           component={OrdersView}
           options={{
             title: 'Pedidos',
+            headerRight: () => <LogoutButton />,
           }}
         />
         )}
