@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable quotes */
-import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./slices/userSlice";
+import { useDispatch } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './slices/userSlice';
+import ordersReducer from './slices/ordersSlice';
 
 const store = configureStore({
     reducer: {
         userData: userReducer,
+        orders: ordersReducer,
     },
     middleware: (getDefaultMiddlewares) => {
         const middlewares = getDefaultMiddlewares();
@@ -20,3 +22,5 @@ const store = configureStore({
 export default store;
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch: () => AppDispatch = useDispatch;
