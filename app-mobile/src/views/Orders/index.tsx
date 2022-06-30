@@ -19,16 +19,14 @@ const Tab = createBottomTabNavigator();
 
 export function OrdersView() {
   const user = useSelector(selectUser);
+  const userId = user?.id || '';
   useEffect(() => {
-    const fetchOrders = async () => {
-      if (!user) {
-        return;
-      }
-      const orders = await getOrders(user.id);
+   const fetchOrders = async () => {
+      const orders = await getOrders(userId);
       console.log(orders);
     };
     fetchOrders();
-  }, [user]);
+  }, [userId]);
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({

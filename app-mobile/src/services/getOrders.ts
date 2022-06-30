@@ -53,7 +53,7 @@ const docsToOrders = (
       value,
       partnerValue,
       user,
-      createdAt,
+      createdAt: createdAt.toDate().toISOString(),
       pickupAddress,
       deliveryAddress,
       comments,
