@@ -56,3 +56,8 @@ export const selectAcceptedOrders = (state: RootState) =>
 
 export const selectFinishedOrders = (state: RootState) =>
   state.orders.orders.filter(order => order.status === OrderStatus.FINISHED);
+
+  export const selectLoadOrderInfo = (state: RootState) => ({
+    status: state.orders.status,
+    error: state.orders.error,
+  });
