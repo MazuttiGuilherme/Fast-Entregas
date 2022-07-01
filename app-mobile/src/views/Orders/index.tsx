@@ -12,7 +12,7 @@ import {AcceptedOrdersView} from '../AcceptedOrders';
 import {FinishedOrdersView} from '../FinishedOrders';
 import {OpenOrdersView} from '../OpenOrders';
 import { selectUser } from '../../store/slices/userSlice';
-import { LoadOrders } from '../../store/slices/ordersSlice';
+import { loadOrders } from '../../store/slices/ordersSlice';
 import { useAppDispatch } from '../../store/store';
 import { useSelector } from 'react-redux';
 
@@ -23,7 +23,7 @@ export function OrdersView() {
   const userId = user?.id || '';
   const dispatch = useAppDispatch();
   useEffect(() => {
-   dispatch(LoadOrders(userId));
+   dispatch(loadOrders(userId));
   }, [userId, dispatch]);
   return (
     <Tab.Navigator

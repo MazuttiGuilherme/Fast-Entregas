@@ -4,8 +4,8 @@ import {LoadingStatus} from '../../entities/LoadingStatus';
 import {Order} from '../../entities/Order';
 import { getOrders } from '../../services/getOrders';
 
-export const LoadOrders = createAsyncThunk(
-  'orders/loadingOrders',
+export const loadOrders = createAsyncThunk(
+  'orders/loadOrders',
   async (userId: string) => {
     const orders = await getOrders(userId);
     return orders;
@@ -29,15 +29,15 @@ const slice = createSlice({
     initialState,
     reducers: {},
     extraReducers: builder => {
-      builder.addCase(LoadOrders.pending, state => {
+      builder.addCase(loadOrders.pending, state => {
         state.status = LoadingStatus.loading;
         state.error = null;
       });
-      builder.addCase(LoadOrders.fulfilled, (state, action) => {
+      builder.addCase(loadOrders.fulfilled, (state, action) => {
         state.orders = action.payload;
         state.status = LoadingStatus.succeeded;
       });
-      builder.addCase(LoadOrders.rejected, (state, action) => {
+      builder.addCase(loadOrders.rejected, (state, action) => {
         state.status = LoadingStatus.failed;
         state.error = action.error;
       });
