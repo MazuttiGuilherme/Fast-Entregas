@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable eol-last */
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable semi */
-/* eslint-disable quotes */
-import { CustomText } from "../../components/CustomText";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { OrdersList } from '../../components/OrdersList';
+import { selectAcceptedOrders } from '../../store/slices/ordersSlice';
 
 export function AcceptedOrdersView() {
-    return <CustomText>Aceitou</CustomText>
+    const acceptedOrders = useSelector(selectAcceptedOrders);
+    return <OrdersList orders={acceptedOrders} noOrdersMessage="Nenhum pedido em andamento encontrado."/>;
 }
