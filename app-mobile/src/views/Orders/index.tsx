@@ -7,23 +7,24 @@ import {faCircleCheck as farCircleCheck} from '@fortawesome/free-regular-svg-ico
 import {faCircleCheck as fasCircleCheck} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {AcceptedOrdersView} from '../AcceptedOrders';
 import {FinishedOrdersView} from '../FinishedOrders';
 import {OpenOrdersView} from '../OpenOrders';
-import { selectUser } from '../../store/slices/userSlice';
-import { loadOrders } from '../../store/slices/ordersSlice';
-import { useAppDispatch } from '../../store/store';
-import { useSelector } from 'react-redux';
+import {selectUser} from '../../store/slices/userSlice';
+import {loadOrders, selectAcceptedOrders} from '../../store/slices/ordersSlice';
+import {useAppDispatch} from '../../store/store';
+import {useSelector} from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
 export function OrdersView() {
+  const acceptedOrders = useSelector(selectAcceptedOrders);
   const user = useSelector(selectUser);
   const userId = user?.id || '';
   const dispatch = useAppDispatch();
   useEffect(() => {
-   dispatch(loadOrders(userId));
+    dispatch(loadOrders(userId));
   }, [userId, dispatch]);
   return (
     <Tab.Navigator
@@ -51,8 +52,13 @@ export function OrdersView() {
         tabBarInactiveBackgroundColor: '#EEEEEE',
         tabBarActiveBackgroundColor: '#EEEEEE',
         tabBarLabelStyle: {
-            fontFamily: 'Lato-Regular',
-            fontSize: 12,
+          fontFamily: 'Lato-Regular',
+          fontSize: 12,
+        },
+        tabBarBadgeStyle: {
+          backgroundColor: '#FF3830',
+          fontSize: 14,
+          fontFamily: 'Lato-Regular',
         },
       })}>
       <Tab.Screen
@@ -67,6 +73,8 @@ export function OrdersView() {
         component={AcceptedOrdersView}
         options={{
           title: 'Em andamento',
+          tabBarBadge:
+            acceptedOrders.length > 0 ? acceptedOrders.length : undefined,
         }}
       />
       <Tab.Screen
