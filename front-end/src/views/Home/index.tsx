@@ -31,7 +31,7 @@ export function HomeView() {
                 variant="success"
                 size="lg"
                 className="mt-auto mt-lg-3 mb-2"
-                to="/novo-pedido"
+                to="/cadastro"
               >
                 Criar conta
               </CustomButton>

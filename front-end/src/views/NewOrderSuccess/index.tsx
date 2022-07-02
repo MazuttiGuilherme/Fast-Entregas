@@ -6,7 +6,7 @@ import { PageTitle } from "../../components/PageTitle";
 export function NewOrderSuccessView() {
   return (
     <Layout>
-      <Container className="text-center">
+      <Container className="text-center mt-5">
         <Row className="justify-content-center">
           <Col md={8} lg={6} xl={5}>
             <PageTitle>Pedido recebido com sucesso!</PageTitle>

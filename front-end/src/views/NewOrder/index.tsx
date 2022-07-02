@@ -7,7 +7,7 @@ import { EstimateForm } from "./EstimateForm";
 export function NewOrderView () {
     return (
         <Layout>
-            <Container>
+            <Container className="mt-5">
                 <PageTitle>Novo Pedido</PageTitle>
                 <Row>
                     <Col xs={12} md={6} lg={7}>

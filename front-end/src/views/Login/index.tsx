@@ -58,7 +58,7 @@ export function LoginView () {
   };
     return (
         <Layout>
-            <Container>
+            <Container className="mt-5">
                 <Row className="justify-content-center">
                     <Col lg={4}>
                       <PageTitle>Login</PageTitle>
