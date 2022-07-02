@@ -6,6 +6,7 @@ import { LoadingStatus } from '../../entities/LoadingStatus';
 import {Order} from '../../entities/Order';
 import { selectLoadOrderInfo } from '../../store/slices/ordersSlice';
 import {Container} from '../Container';
+import { CustomAlert } from '../CustomAlert';
 import {CustomText} from '../CustomText';
 import { Loading } from '../Loading';
 
@@ -19,6 +20,13 @@ export function OrdersList({orders, noOrdersMessage}: Props) {
   if (status === LoadingStatus.loading){
     return <Loading />;
   }
+  if (status === LoadingStatus.failed) {
+    return (
+      <Container padding>
+        <CustomAlert>Falha ao bsucar pedidos.</CustomAlert>
+      </Container>
+    );
+  }
   return (
     <Container>
       {orders.length > 0 ? (
@@ -29,8 +37,7 @@ export function OrdersList({orders, noOrdersMessage}: Props) {
         </>
       ) : (
         <CustomText style={styles.noOrder}>{noOrdersMessage}</CustomText>
-      )}
-      ;
+      )};
     </Container>
   );
 }
